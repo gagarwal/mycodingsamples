@@ -1,0 +1,3 @@
+John,78
+john,67
+Allah,89
