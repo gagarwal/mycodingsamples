@@ -1,0 +1,39 @@
+public class MagicIndexDistinct {
+
+	public static void main(String args[]) {
+		int[] anArray = new int[5];
+
+		anArray[0] = -10;
+		anArray[1] = -5;
+		anArray[2] = 0;
+		anArray[3] = 1;
+		anArray[4] = 4;
+		anArray[5] = 600;
+		anArray[6] = 700;
+		anArray[7] = 800;
+		anArray[8] = 900;
+		anArray[9] = 1000;
+
+		System.out.println(magicIndexExists(anArray, 0, anArray.length - 1));
+	}
+
+	private static boolean magicIndexExists(int array[], int start, int end) {
+
+		if (start > end || start < 0 || end >= array.length - 1) {
+			return false;
+		}
+
+		int mid = (start + end) / 2;
+
+		if (array[mid] == mid) {
+			return true;
+		}
+
+		else if (array[mid] > mid) {
+		}
+
+		else {
+		}
+		return false;
+	}
+}

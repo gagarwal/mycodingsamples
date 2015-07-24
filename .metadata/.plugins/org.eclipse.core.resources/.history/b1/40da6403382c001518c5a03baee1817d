@@ -1,0 +1,41 @@
+package ditinct
+public class MagicIndexDistinct {
+
+	public static void main(String args[]) {
+		int[] anArray = new int[10];
+
+		anArray[0] = -10;
+		anArray[1] = -5;
+		anArray[2] = -4;
+		anArray[3] = 1;
+		anArray[4] = 2;
+		anArray[5] = 3;
+		anArray[6] = 4;
+		anArray[7] = 6;
+		anArray[8] = 8;
+		anArray[9] = 1000;
+
+		System.out.println(magicIndexExists(anArray, 0, anArray.length - 1));
+	}
+
+	private static boolean magicIndexExists(int array[], int start, int end) {
+
+		if (start > end || start < 0 || end >= array.length) {
+			return false;
+		}
+
+		int mid = (start + end) / 2;
+
+		if (array[mid] == mid) {
+			return true;
+		}
+
+		else if (array[mid] > mid) {
+			return magicIndexExists(array, 0, mid - 1);
+		}
+
+		else {
+			return magicIndexExists(array, mid + 1, end);
+		}
+	}
+}

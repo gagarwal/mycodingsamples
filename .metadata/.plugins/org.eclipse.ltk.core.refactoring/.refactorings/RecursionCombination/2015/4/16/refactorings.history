@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;towersOfHanoi&apos; in &apos;RecusrionCombination.main(...)&apos; to &apos;recursionCombination&apos;&#x0D;&#x0A;- Original project: &apos;RecursionCombination&apos;&#x0D;&#x0A;- Original element: &apos;RecusrionCombination.main(String[]).towersOfHanoi&apos;&#x0D;&#x0A;- Renamed element: &apos;towersOfHanoi&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;towersOfHanoi&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;{RecusrionCombination.java[RecusrionCombination~main~\[QString;@towersOfHanoi!313!376!334!346!QRecusrionCombination;!0!false" name="recursionCombination" references="true" stamp="1429074696555" version="1.0"/>
+</session>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;StiaircaseRecursion&apos; to &apos;StiaircaseIterative&apos;&#x0D;&#x0A;- Original project: &apos;StiaircaseIterative&apos;&#x0D;&#x0A;- Original element: &apos;StiaircaseRecursion&apos;&#x0D;&#x0A;- Renamed element: &apos;StiaircaseIterative&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;StiaircaseRecursion&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;{StiaircaseRecursion.java[StiaircaseRecursion" matchStrategy="1" name="StiaircaseIterative" qualified="false" references="true" similarDeclarations="false" stamp="1429160744977" textual="false" version="1.0"/>
+</session>

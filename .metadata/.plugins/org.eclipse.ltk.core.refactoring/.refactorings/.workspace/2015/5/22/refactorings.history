@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename Java project &apos;LevelOrderTraversa&apos; to &apos;LevelOrderTraversal&apos;&#x0D;&#x0A;- Original element: &apos;LevelOrderTraversa&apos;&#x0D;&#x0A;- Renamed element: &apos;LevelOrderTraversa&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename Java project &apos;LevelOrderTraversa&apos;" flags="7" id="org.eclipse.jdt.ui.rename.java.project" input="=LevelOrderTraversa" name="LevelOrderTraversal" references="true" stamp="1432588163953" version="1.0"/>
+</session>

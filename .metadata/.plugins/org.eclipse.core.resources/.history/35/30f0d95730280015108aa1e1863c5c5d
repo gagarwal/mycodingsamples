@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+public class ForLoop {
+
+	public static void main(String args[]) {
+
+		System.out.print("Enter String ");
+
+		Scanner scanner = new Scanner(System.in);
+
+		scanner.close();
+		
+		boolean hasUniqueCharacters();
+	}
+
+	private static void hasUniqueCharacters(String testString) {
+
+		int length = testString.length();
+
+		for (int i = 0; i < length; i++) {
+
+			for (j = i + 1; j < length; j++) {
+
+			}
+		}
+	}
+
+}

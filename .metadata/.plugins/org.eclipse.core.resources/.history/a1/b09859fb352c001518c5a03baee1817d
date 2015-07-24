@@ -1,0 +1,21 @@
+public class MagicIndexDistinct {
+
+	public static void main(String args[]) {
+		int[] anArray = new int[5];
+
+		anArray[0] = -10;
+		anArray[1] = -5;
+		anArray[2] = 0;
+		anArray[3] = 1;
+		anArray[4] = 4;
+		anArray[5] = 600;
+		anArray[6] = 700;
+		anArray[7] = 800;
+		anArray[8] = 900;
+		anArray[9] = 1000;
+	}
+
+	private boolean magicIndexExists(int array[], start, end) {
+		return false;
+	}
+}

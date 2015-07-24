@@ -1,0 +1,9 @@
+public class UsingHashMap {
+
+	public static void main(String args[]) {
+
+		char[] charArray = args[0].toCharArray();
+
+		char character = charArray[0];
+	}
+}
