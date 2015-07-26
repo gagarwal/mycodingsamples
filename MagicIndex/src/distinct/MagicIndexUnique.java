@@ -1,4 +1,4 @@
-package duplicates;
+package distinct;
 
 public class MagicIndexUnique {
 
