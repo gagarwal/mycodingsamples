@@ -1,60 +1,148 @@
-import java.util.Queue;
+
+/*
+ * usage: MyBinaryTree bTree = new MyBinaryTree(); bTree.insert("Google");
+ * bTree.insert("Amazon"); bTree.insert("Apple"); bTree.insert("Facebook");
+ * bTree.insert("MicroSoft"); System.out.println("InOrder Traverse:");
+ * bTree.inOrder(); System.out.println("There are " + bTree.getSize() +
+ * " nodes."); System.out.println("Level Traverse:"); bTree.levelTraverse();
+ * 
+ * // if store object into binary tree, the class must implement
+ * Comparable<Object> class Student implements Comparable<Object> { public
+ * String name; public int score; public Student(String name, int score) {
+ * this.name = name; this.score = score; }
+ * 
+ * @Override public int compareTo(Object o) { // order by score, ascending
+ * Student student = (Student)o; if(this.score < student.score) { return -1; }
+ * else if(student.score == this.score) { return 0; } else { return 1; } }
+ * 
+ * @Override public String toString() { return "[name is " + name +
+ * ", score is " + score + "]"; } } // following is how to use MyBinaryTree
+ * bTree2 = new MyBinaryTree(); Student s1 = new Student("Bob", 93); Student s2
+ * = new Student("Tom", 87); Student s3 = new Student("Jerry", 90); Student s4 =
+ * new Student("Jim", 93); bTree2.insert(s1); bTree2.insert(s2);
+ * bTree2.insert(s3); bTree2.insert(s4); System.out.println("InOrder Traverse:"
+ * ); bTree2.inOrder();
+ */
+
 import java.util.LinkedList;
+import java.util.Queue;
 
 public class LevelOrderTraversal {
+	private class Node {
+		public long val;
+		public Node left;
+		public Node right;
 
-	public static class TreeNode {
-		int data;
-		TreeNode left;
-		TreeNode right;
-
-		TreeNode(int data) {
-			this.data = data;
+		public Node(long val) {
+			this.val = val;
+			left = null;
+			right = null;
 		}
 	}
 
-	// prints in level order
-	public static void levelOrderTraversal(TreeNode startNode) {
-		Queue<TreeNode> queue = new LinkedList<TreeNode>();
-		queue.add(startNode);
+	private Node root;
+	private int size;
+
+	public LevelOrderTraversal() {
+		root = null;
+		size = 0;
+	}
+
+	private void preOrder(Node curr) {
+		if (curr == null) {
+			return;
+		}
+		System.out.println(curr.val);
+		preOrder(curr.left);
+		preOrder(curr.right);
+	}
+
+	private void inOrder(Node curr) {
+		if (curr == null) {
+			return;
+		}
+		inOrder(curr.left);
+		System.out.println(curr.val);
+		inOrder(curr.right);
+	}
+
+	private void postOrder(Node curr) {
+		if (curr == null) {
+			return;
+		}
+		postOrder(curr.left);
+		postOrder(curr.right);
+		System.out.println(curr.val);
+	}
+
+	@SuppressWarnings("unchecked")
+	private Node recursiveInsert(Node curr, Object val) {
+		if (curr == null) {
+			curr = new Node(val);
+		} else if (((Comparable<Object>) val).compareTo(curr.val) < 0) {
+			curr.left = recursiveInsert(curr.left, val);
+		} else {
+			curr.right = recursiveInsert(curr.right, val);
+		}
+		return curr;
+	}
+
+	public int getSize() {
+		return size;
+	}
+
+	public void preOrder() {
+		preOrder(root);
+	}
+
+	public void inOrder() {
+		inOrder(root);
+	}
+
+	public void postOrder() {
+		postOrder(root);
+	}
+
+	public void levelTraverse() {
+		if (root == null) {
+			System.out.println("The BinaryTree is empty.");
+			return;
+		}
+		Queue<Node> queue = new LinkedList<Node>();
+		Node node;
+		queue.add(root);
 		while (!queue.isEmpty()) {
-			TreeNode tempNode = queue.poll();
-			System.out.printf("%d ", tempNode.data);
-			System.out.println();
-			if (tempNode.left != null)
-				queue.add(tempNode.left);
-			if (tempNode.right != null)
-				queue.add(tempNode.right);
+			node = queue.poll();
+			System.out.println(node.val);
+			if (node.left != null) {
+				queue.offer(node.left);
+			}
+			if (node.right != null) {
+				queue.offer(node.right);
+			}
 		}
 	}
 
-	public static void main(String[] args) {
-		LevelOrderTraversal bi = new LevelOrderTraversal();
-		// Creating a binary tree
-		TreeNode rootNode = createBinaryTree();
-		System.out.println("Level Order traversal of binary tree will be:");
-		levelOrderTraversal(rootNode);
+	public void insert(Object val) {
+		root = recursiveInsert(root, val);
+		size++;
 	}
 
-	public static TreeNode createBinaryTree() {
+	private void deleteNode(Node temp, long n) {
+		if (temp == null)
+			return;
+		else if (temp.val > n) {
+			deleteNode(temp.left, n);
+		} else {
+			deleteNode(temp.right, n);
+		}
 
-		TreeNode rootNode = new TreeNode(40);
-		TreeNode node20 = new TreeNode(20);
-		TreeNode node10 = new TreeNode(10);
-		TreeNode node30 = new TreeNode(30);
-		TreeNode node60 = new TreeNode(60);
-		TreeNode node50 = new TreeNode(50);
-		TreeNode node70 = new TreeNode(70);
-
-		rootNode.left = node20;
-		rootNode.right = node60;
-
-		node20.left = node10;
-		node20.right = node30;
-
-		node60.left = node50;
-		node60.right = node70;
-
-		return rootNode;
+		if (temp.val == n) {
+			
+			if(temp.left == null && temp.right == null)
+			{
+				
+			}
+		}
 	}
 }
