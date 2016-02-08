@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class RemoveDuplicatesSortedArray {
 	public static void main(String args[]) {
 		int[] nums = { 1 };
@@ -19,5 +21,26 @@ public class RemoveDuplicatesSortedArray {
 		for (int k = 0; k < distinctElemenCount; k++)
 			System.out.print(nums[k] + " ");
 		return i;
+	}
+
+	public static int removeDuplicates2(int[] A) {
+		if (A.length < 2)
+			return A.length;
+
+		int j = 0;
+		int i = 1;
+
+		while (i < A.length) {
+			if (A[i] == A[j]) {
+				i++;
+			} else {
+				j++;
+				A[j] = A[i];
+				i++;
+			}
+		}
+
+		int[] B = Arrays.copyOf(A, j + 1);
+		return B.length;
 	}
 }
