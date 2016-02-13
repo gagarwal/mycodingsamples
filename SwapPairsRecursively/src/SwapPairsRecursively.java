@@ -23,7 +23,7 @@ public class SwapPairsRecursively {
 	}
 
 	public static LinkedListNode swapPairwiseIteratively(LinkedListNode head) {
-		
+
 		if (head == null || head.next == null) {
 			return head;
 		}
@@ -37,6 +37,7 @@ public class SwapPairsRecursively {
 		LinkedListNode ptr2 = head;
 
 		while (ptr2 != null && ptr2.next != null) {
+			
 			LinkedListNode nextstart = ptr2.next.next;
 
 			ptr2.next.next = ptr2;
