@@ -41,12 +41,11 @@ public class FindAllSubSets {
 		ArrayList<Integer> newSet;
 
 		/*
-		 * for each set - allSubsets[i] in allSubsets: 
-		 * 1. create new set by adding element placed at 'currIndex' in the given set
-		 * 2. add this newly created set to 'allSubsets'
+		 * for each set - allSubsets[i] in allSubsets: 1. create new set by
+		 * adding element placed at 'currIndex' in the given set 2. add this
+		 * newly created set to 'allSubsets'
 		 */
-		for (int i = 0; i < allSubSetsSize; i++)
-		{
+		for (int i = 0; i < allSubSetsSize; i++) {
 			newSet = cloneSet(allSubsets.get(i));
 
 			newSet.add(set.get(currIndex));
@@ -97,3 +96,4 @@ public class FindAllSubSets {
 		}
 	}
 }
+
