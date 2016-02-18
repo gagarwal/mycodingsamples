@@ -1,11 +1,11 @@
 public class MaximumSumArray {
 
 	public static void main(String[] args) {
-//		 int[] intArr = { 3, -1, -1, -1, -1, -1, 2, 0, 0, 0 };
-//		int[] intArr = { -1, 3, -5, 4, 6, -1, 2, -7, 13, -3 };
+		// int[] intArr = { 3, -1, -1, -1, -1, -1, 2, 0, 0, 0 };
+		// int[] intArr = { -1, 3, -5, 4, 6, -1, 2, -7, 13, -3 };
 		// int[] intArr={-6,-2,-3,-4,-1,-5,-5};
-//		 int[] intArr = { -1, -2, 3, 4, -5, 6 };
-		int[] intArr = { -1, -2, -4,9 };
+		// int[] intArr = { -1, -2, 3, 4, -5, 6 };
+		int[] intArr = { -3, -2, -4, };
 		findMaxSubArray(intArr);
 		System.out.println(maxSubArraySum(intArr, intArr.length));
 	}

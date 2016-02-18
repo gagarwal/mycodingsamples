@@ -29,9 +29,9 @@ public class RotateMatrix {
 	}
 
 	public static void main(String[] args) {
-		int[][] matrix = AssortedMethods.randomMatrix(3, 3, 0, 9);
+		int[][] matrix = AssortedMethods.randomMatrix(4, 4, 0, 16);
 		AssortedMethods.printMatrix(matrix);
-		rotate(matrix, 3);
+		rotate(matrix, 4);
 		System.out.println();
 		AssortedMethods.printMatrix(matrix);
 	}
