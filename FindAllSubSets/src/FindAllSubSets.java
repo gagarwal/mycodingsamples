@@ -38,6 +38,7 @@ public class FindAllSubSets {
 		 * will increase its size dynamically.
 		 */
 		int allSubSetsSize = allSubsets.size();
+
 		ArrayList<Integer> newSet;
 
 		/*
@@ -60,7 +61,6 @@ public class FindAllSubSets {
 	}
 
 	public ArrayList<ArrayList<Integer>> findAllSubsets(ArrayList<Integer> set) {
-
 		ArrayList<ArrayList<Integer>> allSubsets = new ArrayList<ArrayList<Integer>>();
 
 		// add empty set to all possible subsets
@@ -85,7 +85,6 @@ public class FindAllSubSets {
 
 		// only 2^n-1 subsets would be printed. Empty subset is not printed.
 		for (int i = 0; i < allSubsets.size(); i++) {
-
 			ArrayList<Integer> tempSet = allSubsets.get(i);
 
 			for (int j = 0; j < tempSet.size(); j++) {
@@ -96,4 +95,3 @@ public class FindAllSubSets {
 		}
 	}
 }
-

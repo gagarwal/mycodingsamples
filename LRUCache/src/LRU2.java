@@ -1,14 +1,16 @@
 import java.util.HashMap;
 
-public class LRU2 {
-
-	private class Node {
+public class LRU2 
+{
+	private class Node 
+	{
 		protected int key;
 		protected int value;
 		protected Node prev;
 		protected Node next;
 
-		public Node(int key, int value) {
+		public Node(int key, int value)
+		{
 			this.key = key;
 			this.value = value;
 			prev = next = null;
@@ -21,17 +23,22 @@ public class LRU2 {
 	private int capacity;
 	private int size = 0;
 
-	public LRU2(int capacity) {
+	public LRU2(int capacity)
+	{
 		lookup = new HashMap<Integer, Node>(capacity);
 		this.capacity = capacity;
 	}
 
-	public int get(int key) {
+	public int get(int key) 
+	{
 		Node node = lookup.get(key);
 
-		if (node == null) {
-			return -1;
-		} else {
+		if (node == null) 
+		{
+		 return -1;
+		}
+		else 
+		{
 			removeNode(node);
 			lookup.remove(node);
 
@@ -43,10 +50,13 @@ public class LRU2 {
 	}
 
 	public void set(int key, int value) {
+		
 		Node node = lookup.get(key);
 
-		if (node == null) {
-			if (size >= capacity) {
+		if (node == null)
+		{
+			if (size >= capacity) 
+			{
 				Node LUNode = removeFromTail();
 				lookup.remove(LUNode.key);
 			}
@@ -54,7 +64,9 @@ public class LRU2 {
 			Node newNode = new Node(key, value);
 			addNodeToFront(newNode);
 			lookup.put(key, newNode);
-		} else {
+		} 
+		else 
+		{
 			node.value = value;
 
 			removeNode(node);
@@ -65,24 +77,32 @@ public class LRU2 {
 		}
 	}
 
-	private void removeNode(Node node) {
-		if (node.next == null) {
+	private void removeNode(Node node)
+	{
+		if (node.next == null)
+		{
 			tail = node.prev;
 			node.prev.next = null;
 			node.prev = null;
-		} else {
+		} 
+		else
+		{
 			node.prev.next = node.next;
 			node.next.prev = node.prev;
 		}
 		size--;
 	}
 
-	private void addNodeToFront(Node node) {
-		if (start.next == null) {
+	private void addNodeToFront(Node node)
+	{
+		if (start.next == null) 
+		{
 			start.next = node;
 			node.prev = start;
 			tail = node;
-		} else {
+		} 
+		else
+		{
 			start.next.prev = node;
 			node.next = start.next;
 			start.next = node;
