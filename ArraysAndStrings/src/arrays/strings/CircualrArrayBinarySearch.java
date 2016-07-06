@@ -2,37 +2,36 @@ package arrays.strings;
 
 public class CircualrArrayBinarySearch
 {
-	public static int findInCircularlyBinaryArray(int[] array, int key)
+	public static boolean search(int[] nums, int target)
 	{
-		int index = -1, low = 0, high = array.length-1, mid;
-		if(high == -1) return index;
-		while (low <= high)
+		int left = 0, right = nums.length - 1;
+		while (left <= right)
 		{
-			mid = (low+high) / 2;
-			
-			if(array[mid] == key)
-				return mid;
-			else if (array[low] < array[mid-1])
+			int mid = (left + right) / 2;
+			if (nums[mid] == target)
+				return true;
+
+			if (nums[left] < nums[mid])
 			{
-				if(array[low] < key && key < array[mid-1])
-					high = mid - 1;
-				else 
-					low = mid + 1;
-			}
-			else {
-				 	if(array[mid+1] < key && key < array[high])
-				 		low = mid + 1;
-				 	else
-				 		high = mid - 1;
-			     }
-			
+				if (nums[left] <= target && target < nums[mid])
+					right = mid - 1;
+				else
+					left = mid + 1;
+			} else if (nums[left] > nums[mid])
+			{
+				if (nums[mid] < target && target <= nums[right])
+					left = mid + 1;
+				else
+					right = mid - 1;
+			} else
+				left++;
 		}
-		return index;
+		return false;
 	}
-	
+
 	public static void main(String[] args)
 	{
-		int[] array = {2,3,4,5,6,7,1};
-		System.out.println(findInCircularlyBinaryArray(array, 78));
+		int[] array = { 1, 2, 3, 3, 1, 1, 1, };
+		System.out.println(search(array, 3));
 	}
 }
