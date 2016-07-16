@@ -4,26 +4,29 @@ import java.util.Stack;
 
 public class InorderIterative
 {
-	private static void inorderTraversalIterative(TreeNode root)
+	public static void inorderTraversalIterative(TreeNode root)
 	{
-		if(root == null) return;
-			
-		Stack<TreeNode> nodes = new Stack<TreeNode>();
-		
-		while(!nodes.isEmpty() || root!=null)
-		{
-			if(root != null)
-			{
-				nodes.push(root);
-				root = root.left;
-			}
-			else {
-					TreeNode temp = nodes.pop();
-					System.out.print(temp.data + " ");
-					root = temp.right;
-				}
-		}
-	}
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        TreeNode node = root;
+        
+        while(true)
+        {
+            if(node != null)
+            {
+                stack.push(node);
+                node = node.left;
+            }
+            else
+            {
+                	if(stack.isEmpty())
+                		break;
+
+                	node = stack.pop();
+                	System.out.println(node.data);
+                	node = node.right;
+            }
+        }
+    }
 	
 	public static void main(String[] args) {
 		// Create balanced tree
