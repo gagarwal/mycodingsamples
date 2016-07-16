@@ -16,7 +16,7 @@ public class ReplaceNodeValueWithHigherNumbersInTheTree
 		int currentData = node.data;
 		node.data = total - leftSum - currentData;
 		
-		replaceNodeValueWithHigherNumbersInTheTree(node.right, total - leftSum - currentData, root);
+		replaceNodeValueWithHigherNumbersInTheTree(node.right, node.data, root);
 		replaceNodeValueWithHigherNumbersInTheTree(node.left, total , root);
 	}
 	
