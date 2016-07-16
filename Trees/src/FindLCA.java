@@ -1,14 +1,31 @@
 import helper.BTreePrinter;
 import helper.TreeNode;
 
-public class FindLCA {
-	private static void findLCAWithOutLinkToParents() {
-
+public class FindLCA 
+{
+	private static TreeNode findLCAWithOutLinkToParents(TreeNode nodeN1, TreeNode nodeN2, TreeNode root) 
+	{
+		if(root == null || nodeN1 == null || nodeN2 == null) // if either of the node is null or root is null
+			return null;
+		
+		if(nodeN1 == root || nodeN2 == root) // if any of the node is root
+			return root;
+		
+		TreeNode left = findLCAWithOutLinkToParents(nodeN1, nodeN2, root.left);
+		TreeNode right = findLCAWithOutLinkToParents(nodeN1, nodeN2, root.right);
+		
+		if(left == null && right == null)
+			return null;
+		
+		if(left!= null && right!=null)
+			return root;
+		
+		return (left == null ? right : left);
 	}
 
 	private static TreeNode findLCAWithLinkToParents(TreeNode nodeN1, TreeNode nodeN2, TreeNode root)
 	{
-		if(nodeN1 == null || nodeN2 == null) // if either of the node is null
+		if(root == null || nodeN1 == null || nodeN2 == null) // if either of the node is null or root is null
 			return null;
 		
 		if(nodeN1 == nodeN2) // if both are null
@@ -47,13 +64,7 @@ public class FindLCA {
 		 return null;
 	}
 
-//	private static int getHeight(TreeNode node) {
-//		if (node == null)
-//			return 0;
-//		return 1 + Math.max(getHeight(node.left), getHeight(node.right));
-//	}
-
-	static int getHeightWithParent(TreeNode node)
+	private static int getHeightWithParent(TreeNode node)
 	{
 		int height = 0;
 		while (node!=null) {
@@ -62,19 +73,43 @@ public class FindLCA {
 		}
 		return height;
 	}
+	
+	public static TreeNode lowestCommonAncestorBinarySearchTree( TreeNode p, TreeNode q, TreeNode root)
+	{
+		if(root == null)
+			return null;
+	            
+	    if(p == root || q == root)
+	        return root;
+	        
+	    if(p == null || q == null)
+	            return null;
+	        
+	    if(root.data > p.data && root.data < q.data)
+	        return root;  
+	    
+	    else if(root.data > p.data && root.data > q.data)
+	        return lowestCommonAncestorBinarySearchTree(p, q, root.left);
+	    
+	    else 
+	        return lowestCommonAncestorBinarySearchTree(p, q, root.right);
+	}
+	 
 
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
-		int[] array = { 0, 1, 3, 4, 7, 8, 10 };
+		int[] array = { 2 };
 		TreeNode root = TreeNode.createMinimalBST(array);
+		root.setLeftChild(new TreeNode(1));
 		BTreePrinter.printNode(root);
 		
-		int n1 = 0; int n2 = 18;
+		int n1 = 2; int n2 = 1;
 		
 		TreeNode nodeN1 = root.find(n1);
 		TreeNode nodeN2 = root.find(n2);
 
-		TreeNode lca = findLCAWithLinkToParents(nodeN1, nodeN2, root);
+		TreeNode lca = lowestCommonAncestorBinarySearchTree(nodeN2, nodeN1, root);
+		
 		if(lca!=null)
 			System.out.println(lca.data);
 	}
