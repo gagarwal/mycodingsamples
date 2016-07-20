@@ -96,7 +96,6 @@ public class FindLCA
 	}
 	 
 
-	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		int[] array = { 2 };
 		TreeNode root = TreeNode.createMinimalBST(array);

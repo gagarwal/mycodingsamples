@@ -39,7 +39,8 @@ public class InorderSuccessor
 		return successor;
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		// Create balanced tree
 		int[] array = { 0, 1, 3, 4, 7, 8 ,10 };
 		TreeNode root = TreeNode.createMinimalBST(array);
