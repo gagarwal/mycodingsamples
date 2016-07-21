@@ -29,7 +29,8 @@ public class NextGreaterElement {
 			stack.push(input[i]);
 		}
 		
-		while (!stack.isEmpty()) {
+		while (!stack.isEmpty()) 
+		{
 			int top = (int) stack.pop();
 			System.out.println("Next greater element for " + top + "\t = " + null);
 		}

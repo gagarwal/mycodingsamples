@@ -2,8 +2,8 @@ import java.util.Arrays;
 
 public class RemoveDuplicatesSortedArray {
 	public static void main(String args[]) {
-		int[] nums = { 1 };
-		System.out.println(removeDuplicates(nums));
+		int[] nums = { 1, 2,3 , 4, 5, 5 };
+		System.out.println(removeDuplicates2(nums));
 	}
 
 	public static int removeDuplicates(int[] nums) {
@@ -30,14 +30,14 @@ public class RemoveDuplicatesSortedArray {
 		int j = 0;
 		int i = 1;
 
-		while (i < A.length) {
-			if (A[i] == A[j]) {
-				i++;
-			} else {
+		while (i < A.length) 
+		{
+			if (A[i] != A[j])
+			{
 				j++;
 				A[j] = A[i];
-				i++;
 			}
+			i++;
 		}
 
 		int[] B = Arrays.copyOf(A, j + 1);

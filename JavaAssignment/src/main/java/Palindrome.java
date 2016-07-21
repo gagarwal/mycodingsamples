@@ -31,21 +31,15 @@ public class Palindrome
 
             // check whether start character is special character, if so loop until you get a letter digit
             while (!Character.isLetterOrDigit(startChar) && startIndex < endIndex)
-            {
                 startChar = Character.toLowerCase(testString.charAt(++startIndex));
-            }
 
             // check whether last character is special character, if so loop until you get a letter/digit
             while (!Character.isLetterOrDigit(endChar) && startIndex < endIndex)
-            {
                 endChar = Character.toLowerCase(testString.charAt(--endIndex));
-            }
 
             // compare first and last characters, if they are not same return false
             if (startChar != endChar)
-            {
                 return false;
-            }
 
             startIndex++;
             endIndex--;

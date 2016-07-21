@@ -3,6 +3,7 @@ import helper.TreeNode;
 
 public class FindLCA 
 {
+	@SuppressWarnings("unused")
 	private static TreeNode findLCAWithOutLinkToParents(TreeNode nodeN1, TreeNode nodeN2, TreeNode root) 
 	{
 		if(root == null || nodeN1 == null || nodeN2 == null) // if either of the node is null or root is null
@@ -23,6 +24,7 @@ public class FindLCA
 		return (left == null ? right : left);
 	}
 
+	@SuppressWarnings("unused")
 	private static TreeNode findLCAWithLinkToParents(TreeNode nodeN1, TreeNode nodeN2, TreeNode root)
 	{
 		if(root == null || nodeN1 == null || nodeN2 == null) // if either of the node is null or root is null
@@ -67,7 +69,8 @@ public class FindLCA
 	private static int getHeightWithParent(TreeNode node)
 	{
 		int height = 0;
-		while (node!=null) {
+		while (node!=null)
+		{
 			height++;
 			node = node.parent;
 		}

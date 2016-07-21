@@ -1,24 +1,26 @@
 import helper.LinkedListNode;
 
-public class LinkedListFindStartOfCycle {
+public class LinkedListFindStartOfCycle
+{
 
-	public static LinkedListNode FindBeginning(LinkedListNode head) {
+	public static LinkedListNode FindBeginning(LinkedListNode head)
+	{
 		LinkedListNode slow = head;
 		LinkedListNode fast = head;
 
 		// Find meeting point
-		while (fast != null && fast.next != null) {
+		while (fast != null && fast.next != null)
+		{
 			slow = slow.next;
 			fast = fast.next.next;
-			if (slow == fast) {
+
+			if (slow == fast) 
 				break;
-			}
 		}
 
 		// Error check - there is no meeting point, and therefore no loop
-		if (fast == null || fast.next == null) {
+		if (fast == null || fast.next == null) 
 			return null;
-		}
 
 		/*
 		 * Move slow to Head. Keep fast at Meeting Point. Each are k steps /*
@@ -26,7 +28,8 @@ public class LinkedListFindStartOfCycle {
 		 * Loop Start.
 		 */
 		slow = head;
-		while (slow != fast) {
+		while (slow != fast)
+		{
 			slow = slow.next;
 			fast = fast.next;
 		}
@@ -35,25 +38,24 @@ public class LinkedListFindStartOfCycle {
 		return fast;
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		int list_length = 100;
 		int k = 10;
 
 		// Create linked list
 		LinkedListNode[] nodes = new LinkedListNode[list_length];
-		for (int i = 0; i < list_length; i++) {
+		
+		for (int i = 0; i < list_length; i++) 
 			nodes[i] = new LinkedListNode(i, null, i > 0 ? nodes[i - 1] : null);
-		}
 
 		// Create loop;
 		nodes[list_length - 1].next = nodes[list_length - k];
 
 		LinkedListNode loop = FindBeginning(nodes[0]);
-		if (loop == null) {
+		if (loop == null)
 			System.out.println("No Cycle.");
-		} else {
+	    else
 			System.out.println(loop.data);
-		}
 	}
-
 }

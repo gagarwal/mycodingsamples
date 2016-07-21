@@ -40,7 +40,6 @@ public class FileRead
      */
     public static void printcount(final String filePath) throws IOException, FileNotFoundException, NumberFormatException
     {
-
         File file = new File(filePath);
         FileReader fileReader = new FileReader(file);
 
@@ -67,17 +66,13 @@ public class FileRead
             Long tempCount = Long.valueOf(line.substring(commaIndex + 1));
 
             if (nameCountMap.containsKey(currentKey))
-            {
-                // If map contains the key alreday, add the value to existing value
                 tempCount = nameCountMap.get(currentKey) + tempCount;
-            }
+            
             nameCountMap.put(currentKey, tempCount);
         }
 
         for (Map.Entry entry : nameCountMap.entrySet())
-        {
             System.out.println("Count for " + entry.getKey() + " is " + entry.getValue());
-        }
 
         System.out.println();
         fileReader.close();

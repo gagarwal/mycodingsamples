@@ -29,9 +29,8 @@ public class FindAllSubSets {
 		 * base case: if all elements of given set are considered for all
 		 * possible subsets
 		 */
-		if (currIndex == set.size()) {
+		if (currIndex == set.size()) 
 			return;
-		}
 
 		/*
 		 * need to get the size in advance since adding new sets to allSubsets
