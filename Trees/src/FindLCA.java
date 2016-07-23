@@ -97,10 +97,31 @@ public class FindLCA
 	    else 
 	        return lowestCommonAncestorBinarySearchTree(p, q, root.right);
 	}
+	
+	private static TreeNode findLCAWhile(TreeNode root, int v1, int v2)
+	{
+	      if (root == null) return null;
 	 
-
+	      if (v1 > v2)
+	      {          
+	        int temp = v2;
+	        v2 = v1;
+	        v1 = temp;
+	       }
+	    
+	      while (root.data < v1 || root.data > v2)
+	      {
+	        if (root.data < v1) 
+	            root = root.right;
+	        else if (root.data > v2) 
+	            root = root.left;
+	       }       
+	       return root;
+	}
+	
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
-		int[] array = { 2 };
+		int[] array = { 2,1,5,6,7,70 };
 		TreeNode root = TreeNode.createMinimalBST(array);
 		root.setLeftChild(new TreeNode(1));
 		BTreePrinter.printNode(root);
@@ -110,7 +131,7 @@ public class FindLCA
 		TreeNode nodeN1 = root.find(n1);
 		TreeNode nodeN2 = root.find(n2);
 
-		TreeNode lca = lowestCommonAncestorBinarySearchTree(nodeN2, nodeN1, root);
+		TreeNode lca = findLCAWhile(root, 70, 71);
 		
 		if(lca!=null)
 			System.out.println(lca.data);
