@@ -1,72 +1,96 @@
 import java.util.HashMap;
 
-public class LRUCache {
-
+public class LRUCache 
+{
 	private HashMap<Integer, LRUCache.DoubleLinkedListNode> table = new HashMap<Integer, LRUCache.DoubleLinkedListNode>();
 	private DoubleLinkedListNode head;
 	private DoubleLinkedListNode end;
 	private int capacity;
 	private int len;
 
-	public LRUCache(int capacity) {
+	public LRUCache(int capacity) 
+	{
 		this.capacity = capacity;
 		len = 0;
 	}
 
-	public int get(int key) {
-		if (table.containsKey(key)) {
+	public int get(int key) 
+	{
+		if (table.containsKey(key)) 
+		{
 			removeNode(table.get(key));
 			setHead(table.get(key));
 			return table.get(key).val;
-		} else {
+		} 
+		else
+		{
 			return -1;
 		}
 	}
 
-	private void removeNode(DoubleLinkedListNode node) {
+	private void removeNode(DoubleLinkedListNode node)
+	{
 		DoubleLinkedListNode cur = node;
 		DoubleLinkedListNode pre = cur.pre;
 		DoubleLinkedListNode post = cur.post;
-		if (pre != null) {
+		if (pre != null) 
+		{
 			pre.post = post;
-		} else {
+		}
+		else
+		{
 			head = post;
 		}
-		if (post != null) {
+		if (post != null)
+		{
 			post.pre = pre;
 		} else {
 			end = pre;
 		}
 	}
 
-	private void setHead(DoubleLinkedListNode node) {
+	private void setHead(DoubleLinkedListNode node) 
+	{
 		node.post = head;
 		node.pre = null;
-		if (head != null) {
+		
+		if (head != null) 
+		{
 			head.pre = node;
 		}
+		
 		head = node;
-		if (end == null) {
+		
+		if (end == null)
+		{
 			end = node;
 		}
 	}
 
-	public void set(int key, int value) {
-		if (table.containsKey(key)) {
+	public void set(int key, int value)
+	{
+		if (table.containsKey(key))
+		{
 			DoubleLinkedListNode cur = table.get(key);
 			cur.val = value;
 			removeNode(cur);
 			setHead(cur);
-		} else {
+		} 
+		else 
+		{
 			DoubleLinkedListNode cur = new DoubleLinkedListNode(key, value);
-			if (len < capacity) {
+			if (len < capacity) 
+			{
 				setHead(cur);
 				table.put(key, cur);
 				len++;
-			} else {
+			} 
+			else 
+			{
 				table.remove(end.key);
 				end = end.pre;
-				if (end != null) {
+				if (end != null)
+				{
 					end.post = null;
 				}
 
@@ -76,20 +100,22 @@ public class LRUCache {
 		}
 	}
 
-	public class DoubleLinkedListNode {
+	public class DoubleLinkedListNode 
+	{
 		public int val;
 		public int key;
 		public DoubleLinkedListNode pre;
 		public DoubleLinkedListNode post;
 
-		public DoubleLinkedListNode(int key, int value) {
+		public DoubleLinkedListNode(int key, int value) 
+		{
 			val = value;
 			this.key = key;
 		}
-
 	}
 
-	public static void main(String args[]) {
+	public static void main(String args[]) 
+	{
 		LRUCache cache = new LRUCache(3);
 		cache.set(4, 5);
 		cache.set(6, 7);
