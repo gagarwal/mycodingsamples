@@ -2,16 +2,16 @@ import java.util.HashMap;
 
 public class LRUCache 
 {
-	private HashMap<Integer, LRUCache.DoubleLinkedListNode> table = new HashMap<Integer, LRUCache.DoubleLinkedListNode>();
+	private HashMap<Integer, DoubleLinkedListNode> table = new HashMap<Integer, LRUCache.DoubleLinkedListNode>();
 	private DoubleLinkedListNode head;
 	private DoubleLinkedListNode end;
 	private int capacity;
-	private int len;
+	private int size;
 
 	public LRUCache(int capacity) 
 	{
 		this.capacity = capacity;
-		len = 0;
+		size = 0;
 	}
 
 	public int get(int key) 
@@ -30,9 +30,10 @@ public class LRUCache
 
 	private void removeNode(DoubleLinkedListNode node)
 	{
-		DoubleLinkedListNode cur = node;
-		DoubleLinkedListNode pre = cur.pre;
-		DoubleLinkedListNode post = cur.post;
+		DoubleLinkedListNode current = node;
+		DoubleLinkedListNode pre = current.pre;
+		DoubleLinkedListNode post = current.post;
+		
 		if (pre != null) 
 		{
 			pre.post = post;
@@ -44,7 +45,9 @@ public class LRUCache
 		if (post != null)
 		{
 			post.pre = pre;
-		} else {
+		} 
+		else 
+		{
 			end = pre;
 		}
 	}
@@ -79,11 +82,11 @@ public class LRUCache
 		else 
 		{
 			DoubleLinkedListNode cur = new DoubleLinkedListNode(key, value);
-			if (len < capacity) 
+			if (size < capacity) 
 			{
 				setHead(cur);
 				table.put(key, cur);
-				len++;
+				size++;
 			} 
 			else 
 			{
@@ -100,7 +103,7 @@ public class LRUCache
 		}
 	}
 
-	public class DoubleLinkedListNode 
+	private class DoubleLinkedListNode 
 	{
 		public int val;
 		public int key;

@@ -1,7 +1,8 @@
-import java.util.IllegalFormatWidthException;
-
-public class TrinaryTree {
-	private class Node {
+// https://gist.github.com/anujku/2512b1614deb319f92a2
+public class TrinaryTree 
+{
+	private class Node 
+	{
 		private int val;
 		private Node left = null;
 		private Node right = null;
@@ -14,7 +15,8 @@ public class TrinaryTree {
 
 	private Node root;
 
-	public void insert(int val) {
+	public void insert(int val)
+	{
 		root = insert(root, val);
 	}
 
@@ -69,14 +71,12 @@ public class TrinaryTree {
 				else  // it has left and right children
 				{
 					Node current = node;
-					current.val = findMin(current).val;
+					current.val = findMin(current.right).val;
 					node.right = delete(current.right, current.val);
-					node.left = current.left;
 				}
 								
 			}
 		}
-		
 		return node;
 	}
 
@@ -89,7 +89,8 @@ public class TrinaryTree {
 		return node;
 	}
 
-	public Node findNode(int val) {
+	public Node findNode(int val)
+	{
 		Node previous = null;
 		Node current = root;
 
@@ -123,11 +124,8 @@ public class TrinaryTree {
 
 	}
 
-	public static void main(String args[]) {
-		
-		double test = 8000000000d;
-		long test2=  9223372036854775807L;
-		
+	public static void main(String args[]) 
+	{
 		TrinaryTree tree = new TrinaryTree();
 		tree.insert(7);
 		tree.insert(10);
@@ -141,6 +139,5 @@ public class TrinaryTree {
 //		tree.insert(6);
 		
 		tree.delete(10);
-
 	}
 }
