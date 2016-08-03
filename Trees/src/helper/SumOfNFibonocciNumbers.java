@@ -1,36 +1,36 @@
 package helper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SumOfNFibonocciNumbers 
 {
-	private static int sumOfNFibonocciNumbersSum(int n)
+	static List<Integer> fibonocci = new ArrayList<>();
+	static List<Integer> fibonocciSum = new ArrayList<>();
+	
+	private static int populateFibonocci(int n)
 	{
-		int[] fibonocci = populateFibonocci(n);
-		int[] fibonocciSum = new int[n];
-		int sum = 0;
-
-		for(int i=0; i<n; i++)
-		{
-			sum = sum + fibonocci[i];
-			fibonocciSum[i] = sum;
-		}	
-
-		return fibonocciSum[n-1];
-	}
-
-	private static int[] populateFibonocci(int n)
-	{
-		int[] fibonocci = new int[n];
-		fibonocci[0] = 0;
-		fibonocci[1] = 1;
-
-		for(int i = 2; i < n; i++)
-			fibonocci[i] = fibonocci[i-1] + fibonocci[i-2];
+		if(fibonocciSum.size() >= n)
+			return fibonocciSum.get(n-1);
 		
-		return fibonocci;
+		if(fibonocci.size() == 0)
+		{
+			fibonocci.add(0); fibonocci.add(1);
+			fibonocciSum.add(0); fibonocciSum.add(1);
+		}
+		
+		for(int i = fibonocciSum.size() ; i < n; i++)
+		{	
+			fibonocci.add(fibonocci.get(i-1)+ fibonocci.get(i-2));
+			fibonocciSum.add(fibonocciSum.get(i-1) + fibonocci.get(i));
+		}	
+		
+		return fibonocciSum.get(n-1);
 	}	
 	
 	public static void main(String[] args) 
 	{
-		System.out.println(sumOfNFibonocciNumbersSum(8));
+		System.out.println(populateFibonocci(8));
+		System.out.println(populateFibonocci(5));
 	}
 }
