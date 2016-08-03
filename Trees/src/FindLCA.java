@@ -23,6 +23,29 @@ public class FindLCA
 		
 		return (left == null ? right : left);
 	}
+	
+	public static TreeNode commonAncestorWithLinkToParents(TreeNode root, TreeNode p, TreeNode q) 
+	{
+		if ((p == null) || (q == null)) 
+			return null;
+		
+		TreeNode ap = p.parent;
+		while (ap != null)
+		{
+			TreeNode aq = q.parent;
+			while (aq != null)
+			{ 
+				if (aq == ap) 
+				{
+					return aq;
+				}
+				aq = aq.parent;
+			}
+			ap = ap.parent;
+		}
+		return null;
+	}
+
 
 	@SuppressWarnings("unused")
 	private static TreeNode findLCAWithLinkToParents(TreeNode nodeN1, TreeNode nodeN2, TreeNode root)
@@ -121,19 +144,15 @@ public class FindLCA
 	
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
-		int[] array = { 2,1,5,6,7,70 };
-		TreeNode root = TreeNode.createMinimalBST(array);
-		root.setLeftChild(new TreeNode(1));
+		int[] array = {5, 3, 6, 1, 9, 11};
+		TreeNode root = new TreeNode(20);
+		for (int a : array) {
+			root.insertInOrder(a);
+		}
 		BTreePrinter.printNode(root);
-		
-		int n1 = 2; int n2 = 1;
-		
-		TreeNode nodeN1 = root.find(n1);
-		TreeNode nodeN2 = root.find(n2);
-
-		TreeNode lca = findLCAWhile(root, 70, 71);
-		
-		if(lca!=null)
-			System.out.println(lca.data);
+		TreeNode n1 = root.find(5);
+		TreeNode n9 = root.find(1);
+		TreeNode ancestor = commonAncestorWithLinkToParents(root, n1, n9);
+		System.out.println(ancestor.data);
 	}
 }
