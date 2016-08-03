@@ -28,9 +28,7 @@ public class NumbersOccuringTwiceInArraysUsingPair
 		{
 			if(entry.getKey().second == 0)
 				count++;
-				
 		}
-	
 		System.out.println(count);	
 	}
 	
