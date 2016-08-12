@@ -1,5 +1,6 @@
 package arrays.strings;
 
+//https://www.youtube.com/watch?v=NdF1QDTRkck 4.37
 public class PermutationsOfAString 
 {
 	private static void printPermutations(String prefix, String rest)
