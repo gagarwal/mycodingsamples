@@ -10,7 +10,7 @@ public class KthNonReapeatedChar
 	    for (int i = 0; i < strlen; i++)
 	    {
 	        index = string.charAt(i) - 'a';
-	        charCnt[index]= charCnt[index]++;
+	        charCnt[index]= charCnt[index]+1;
 
 	        if(charCnt[index] == 1) 
 	        {  
