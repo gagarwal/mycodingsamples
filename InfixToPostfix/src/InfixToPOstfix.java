@@ -38,7 +38,7 @@ public class InfixToPOstfix
 		default: // (shouldn't happen)
 			return false;
 		}
-	} 
+	}
 
 	public String convertToPostfix(String infix)
 	{
@@ -60,10 +60,10 @@ public class InfixToPOstfix
 			{ // if token is an operator
 
 				while (!operatorStack.empty() && !lowerPrecedence(((String) operatorStack.peek()).charAt(0), c))
-					// (Operator on the stack does not have lower precedence, so
+				{ // (Operator on the stack does not have lower precedence, so
 					// it goes before this one.)
-
 					postfix.append(" ").append((String) operatorStack.pop());
+				}
 
 				if (c == ')')
 				{
@@ -75,8 +75,7 @@ public class InfixToPOstfix
 						operator = (String) operatorStack.pop();
 					}
 				} else
-					operatorStack.push(token);// Push this operator onto the
-												// stack.
+					operatorStack.push(token); // Push this operator onto the stack.
 
 			} else if ((token.length() == 1) && isSpace(c))
 			{
