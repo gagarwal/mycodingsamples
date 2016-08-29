@@ -1,192 +1,107 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class TextJustification
 {
-	public static List<String> fullJustify(String[] words, int maxWidth)
-	{
-		List<String> result = new ArrayList<>();
-		if (words == null || words.length == 0 || maxWidth < 0)
-		{
-			return result;
-		}
-
-		if (maxWidth == 0)
-		{
-			result.add("");
-			return result;
-		}
-
-		fullJustifyHelper(0, words, result, maxWidth);
-
-		return result;
-	}
-
-	private static void fullJustifyHelper(int start, String[] words, List<String> result, int L)
-	{
-		if (start >= words.length)
-		{
-			return;
-		}
-
-		int total = 0;
-		int len = 0;
-		int next = -1;
-		int i = start;
-
-		while (i < words.length && total < L)
-		{
-			total += words[i].length();
-
-			if (total > L)
-			{
-				next = i;
-				break;
-			}
-
-			len += words[i].length();
-			total++;
-			i++;
-		}
-
-		if (next == -1)
-		{
-			next = i;
-		}
-
-		addLists(words, start, next, result, len, L);
-
-		fullJustifyHelper(next, words, result, L);
-	}
-
-	private static void addLists(String[] words, int start, int next, List<String> result, int len, int L)
-	{
-		int slots = next - start - 1;
-		StringBuffer sb = new StringBuffer();
-		// Last line or only one word in a line
-		if (slots == 0 || next == words.length)
-		{
-			for (int i = start; i < next; i++)
-			{
-				sb.append(words[i]);
-				if (i == next - 1)
-				{
-					break;
-				}
-				sb.append(" ");
-			}
-
-			int trailingSpace = L - len - slots;
-			for (int i = 0; i < trailingSpace; i++)
-			{
-				sb.append(" ");
-			}
-
-			result.add(sb.toString());
-		} else
-		{
-			int aveSpace = (L - len) / slots;
-			int moreSpace = (L - len) % slots;
-			for (int i = start; i < next; i++)
-			{
-				sb.append(words[i]);
-				if (i == next - 1)
-				{
-					break;
-				}
-				for (int j = 0; j < aveSpace; j++)
-				{
-					sb.append(" ");
-				}
-
-				if (moreSpace > 0)
-				{
-					sb.append(" ");
-					moreSpace--;
-				}
-			}
-			result.add(sb.toString());
-		}
-	}
-
 	public static void main(String[] args)
 	{
-		String output = myImpl("The quick brown fox jumps over the lazy dog.", 52);
-		System.out.println(output.equals("The  quick  brown  fox  jumps  over  the  lazy  dog."));
-		System.out.println(output + output.length());
+		String input = "The quick brown fox jumps over the lazy dog.";
+		int maxLength = 50;
+		String output = myImpl(input, maxLength);
+		System.out.println(output);
 	}
 
-	private static String myImpl(String string, int maxLength)
+	/**
+	 * Justifies the input string to maxLength given.
+	 * <p>
+	 * If input string has just one word, justifying is not done and input is
+	 * returned without change
+	 * </p>
+	 * <p>
+	 * Trailing and leading white spaces are trimmed before justifying
+	 * </p>
+	 * <p>
+	 * Difference between white spaces count between any two words in the output
+	 * does not exceed one
+	 * </p>
+	 * 
+	 * @throws IllegalArgumentException
+	 *             if either of the following is true
+	 *             <li>if input is either null</li>
+	 *             <li>just white spaces</li>
+	 *             <li>given max length is not greater than the max length</li>
+	 * @param input
+	 *            String to be justified
+	 * @param maxLength
+	 *            length of to justify the input string
+	 * @return string after justifying the input string
+	 */
+	private static String myImpl(String input, int maxLength)
 	{
-		int originalLength = string.length();
-		/// my name is Bindu, 50
+		if (input == null || input.length() == 0 || input.trim().length() == 0)
+		{
+			throw new IllegalArgumentException("input string either null or just white spacesß");
+		}
 
-		String trimmed = string.trim();
+		String trimmed = input.trim();
+		if (trimmed.length() > maxLength)
+		{
+			throw new IllegalArgumentException("max length should be greater that the string length");
+		}
+
 		int wordsCount = trimmed.isEmpty() ? 0 : trimmed.split("\\s+").length;
-		// wordsCount = 4
-
+		int originalLength = trimmed.length();
 		int noOfGaps = wordsCount - 1;
-		// noOfGaps = 3
 
-		int characterCountNoSpace = 0;
+		if (noOfGaps == 0 || trimmed.length() == maxLength)
+		{
+			return input;
+		}
+
+		int characterCountWithOutSpaces = 0;
 		for (int i = 0; i < originalLength; i++)
 		{
-			if (string.charAt(i) != ' ')
+			if (trimmed.charAt(i) != ' ')
 			{
-				characterCountNoSpace++;
+				characterCountWithOutSpaces++;
 			}
 		}
 
-		int totalNumberOfSpacesToAdd = maxLength - characterCountNoSpace;
+		int totalNumberOfSpacesToAdd = maxLength - characterCountWithOutSpaces;
 		int noOfSpacesToAddToEachGap = totalNumberOfSpacesToAdd / noOfGaps;
-		int remainingGaps = maxLength - ((noOfSpacesToAddToEachGap * noOfGaps) + characterCountNoSpace);
+		int remainingSpacesAfterDistribution = maxLength
+				- ((noOfSpacesToAddToEachGap * noOfGaps) + characterCountWithOutSpaces);
 
-		int[] gapsArray = new int[noOfGaps];
-		for (int i = 0; i < gapsArray.length; i++)
+		int[] gapsCountArray = new int[noOfGaps];
+		for (int i = 0; i < gapsCountArray.length; i++)
 		{
-			gapsArray[i] = noOfSpacesToAddToEachGap;
+			gapsCountArray[i] = noOfSpacesToAddToEachGap;
 		}
 
 		int u = 0;
-		while (remainingGaps != 0)
+		while (remainingSpacesAfterDistribution != 0)
 		{
-			gapsArray[u] = gapsArray[u] + 1;
+			gapsCountArray[u] = gapsCountArray[u] + 1;
 			u++;
-			remainingGaps--;
+			remainingSpacesAfterDistribution--;
 		}
 
 		StringBuffer sb = new StringBuffer();
 
 		int i = 0;
-		while (i < noOfGaps)
+		for (int o = 0; o < originalLength; o++)
 		{
-			for (int j = 0; j < originalLength; j++)
+			if (trimmed.charAt(o) != ' ')
 			{
-				if (string.charAt(j) != ' ')
+				sb.append(trimmed.charAt(o));
+			}
+
+			else if (i < gapsCountArray.length)
+			{
+				for (int k = 0; k < gapsCountArray[i]; k++)
 				{
-					sb.append(string.charAt(j));
+					sb.append(" ");
 				}
-
-				else
-				{
-					for (int k = 0; k < gapsArray[i]; k++)
-					{
-						sb.append(" ");
-					}
-
-//					if (i == noOfGaps - 1)
-//					{
-//						for (int l = 0; l < remainingGaps; l++)
-//						{
-//							sb.append(" ");
-//						}
-//					}
-					i++;
-				}
-
+				i++;
 			}
 		}
-
 		return sb.toString();
 	}
 }
