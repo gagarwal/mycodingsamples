@@ -1,9 +1,11 @@
+package text.justify;
 public class TextJustification
 {
 	public static void main(String[] args)
 	{
+		// replace input and maxLength with new values if you want to test with new inputs
 		String input = "The quick brown fox jumps over the lazy dog.";
-		int maxLength = 50;
+		int maxLength = 52;
 		String output = myImpl(input, maxLength);
 		System.out.println(output);
 	}
