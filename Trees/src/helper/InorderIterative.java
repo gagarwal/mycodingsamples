@@ -28,9 +28,11 @@ public class InorderIterative
         }
     }
 	
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		// Create balanced tree
-		int[] array = { 0, 1, 3, 4, 7, 8 ,10 };
+		int[] array =
+		{ 0, 1, 3, 4, 7, 8, 10 };
 		TreeNode root = TreeNode.createMinimalBST(array);
 		BTreePrinter.printNode(root);
 		inorderTraversalIterative(root);
