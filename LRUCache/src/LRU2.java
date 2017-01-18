@@ -111,7 +111,8 @@ public class LRU2
 		size++;
 	}
 
-	private Node removeFromTail() {
+	private Node removeFromTail()
+	{
 		Node temp = tail;
 		tail = tail.prev;
 		removeNode(temp);

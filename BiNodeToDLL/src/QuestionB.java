@@ -1,43 +1,56 @@
-public class QuestionB {
+public class QuestionB
+{
 	static int count = 0;
-	public static BiNode convert(BiNode root) {
-		if (root == null) {
+
+	public static BiNode convert(BiNode root)
+	{
+		if (root == null)
+		{
 			return null;
 		}
-		
+
 		BiNode part1 = convert(root.node1);
 		BiNode part2 = convert(root.node2);
-		
-		if (part1 != null) {
+
+		if (part1 != null)
+		{
 			concat(getTail(part1), root);
 		}
-		
-		if (part2 != null) {
+
+		if (part2 != null)
+		{
 			concat(root, part2);
 		}
-		
+
 		return part1 == null ? root : part1;
-	}	
-	
-	public static BiNode getTail(BiNode node) {
-		if (node == null) {
+	}
+
+	public static BiNode getTail(BiNode node)
+	{
+		if (node == null)
+		{
 			return null;
 		}
-		while (node.node2 != null) {
+		while (node.node2 != null)
+		{
 			count++;
 			node = node.node2;
 		}
 		return node;
 	}
-	
-	public static void concat(BiNode x, BiNode y) {
+
+	public static void concat(BiNode x, BiNode y)
+	{
 		x.node2 = y;
 		y.node1 = x;
 	}
 
-	public static void printLinkedListTree(BiNode root) {
-		for (BiNode node = root; node != null; node = node.node2) {
-			if (node.node2 != null && node.node2.node1 != node) {
+	public static void printLinkedListTree(BiNode root)
+	{
+		for (BiNode node = root; node != null; node = node.node2)
+		{
+			if (node.node2 != null && node.node2.node1 != node)
+			{
 				System.out.print("inconsistent node: " + node);
 			}
 			System.out.print(node.data + "->");
@@ -45,9 +58,11 @@ public class QuestionB {
 		System.out.println();
 	}
 
-	public static BiNode createTree() {
+	public static BiNode createTree()
+	{
 		BiNode[] nodes = new BiNode[7];
-		for (int i = 0; i < nodes.length; i++) {
+		for (int i = 0; i < nodes.length; i++)
+		{
 			nodes[i] = new BiNode(i);
 		}
 		nodes[4].node1 = nodes[2];
@@ -59,8 +74,10 @@ public class QuestionB {
 		return nodes[4];
 	}
 
-	public static void printAsTree(BiNode root, String spaces) {
-		if (root == null) {
+	public static void printAsTree(BiNode root, String spaces)
+	{
+		if (root == null)
+		{
 			System.out.println(spaces + "- null");
 			return;
 		}
@@ -69,7 +86,8 @@ public class QuestionB {
 		printAsTree(root.node2, spaces + "   ");
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		BiNode root = createTree();
 		printAsTree(root, "");
 		BiNode n = convert(root);

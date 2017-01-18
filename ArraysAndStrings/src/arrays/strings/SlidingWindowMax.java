@@ -14,6 +14,7 @@ public class SlidingWindowMax
 		
 		// store index
 		Deque<Integer> queue = new ArrayDeque<>();
+		
 		for (int i = 0; i < input.length; i++) 
 		{
 			// remove numbers out of range k

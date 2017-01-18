@@ -16,17 +16,14 @@ public class ReplaceEmptyWith020
 		}
 
 		int newLength = initialLength + spaceCount*2;
+		
 		if(spaceCount == 0)
-		{
 			return input;
-		}
 
 		char[] charArray = new char[initialLength + spaceCount * 2 + 1 ];
 		
 		for(int i = 0; i < initialLength ; i ++)
-		{
 			charArray[i] = input.charAt(i);
-		}
 
 		charArray[newLength] = '\0';
 
@@ -45,7 +42,6 @@ public class ReplaceEmptyWith020
 					newLength = newLength - 1;
 				 }
 		}
-
 		return charArrayToString(charArray);
 	}
 	
@@ -60,9 +56,8 @@ public class ReplaceEmptyWith020
 		for (char c : array)
 		{
 			if (c == 0) 
-			{
 				break;
-			}
+
 			buffer.append(c);
 		}
 		return buffer.toString();

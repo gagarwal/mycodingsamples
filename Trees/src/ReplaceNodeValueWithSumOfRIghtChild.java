@@ -12,8 +12,6 @@ public class ReplaceNodeValueWithSumOfRIghtChild
 		
 		nodeGetSumGreater(node.left);
 		nodeGetSumGreater(node.right);
-		
-		return;
 	}
 	
 	private static int getSum(TreeNode node)

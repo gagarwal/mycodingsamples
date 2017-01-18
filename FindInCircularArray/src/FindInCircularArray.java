@@ -1,22 +1,24 @@
 
 public class FindInCircularArray {
 
-	public static void main(String args[]) {
+	public static void main(String args[]) 
+	{
 		int a[] = { 5, 6, 7, 8, 8, 8, 9, 80, 89 };
-		System.out.println(searchInCircularArray(a, 8));
+		System.out.println(searchInCircularArray(a, 6));
 	}
 
-	private static int searchInCircularArray(int[] a, int key) {
+	private static int searchInCircularArray(int[] a, int key)
+	{
 		int low = 0;
 		int length = a.length;
 		int high = length - 1;
 
-		while (low <= high) {
+		while (low <= high) 
+		{
 			int mid = (low + high) / 2;
 
-			if (a[mid] == key) {
+			if (a[mid] == key) 
 				return mid;
-			}
 
 			if (a[mid] < a[high]) // right half is sorted
 			{
